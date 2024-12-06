@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,15 +34,15 @@ import org.jetbrains.compose.resources.stringResource
 import petapp.composeapp.generated.resources.Res
 import petapp.composeapp.generated.resources.age
 import petapp.composeapp.generated.resources.genre
+import petapp.composeapp.generated.resources.name
 import petapp.composeapp.generated.resources.place_holder_image
 
 data class PetCardData(
-    val imageUrl: String,
-    val id: String,
+    val imageUrl: String?,
     val name: String,
     val genre: String,
     val age: String,
-    val price: String,
+    val status: String,
     val breed: String
 )
 
@@ -78,13 +79,28 @@ fun PetCard(
                 placeholder = painterResource(Res.drawable.place_holder_image),
                 error = painterResource(Res.drawable.place_holder_image),
             )
+
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "${pet.id} - ${pet.breed}",
+                text = pet.breed,
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
+            Row {
+                Text(
+                    text = "${stringResource(Res.string.name)}: ",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                )
+                Text(
+                    text = pet.name,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                )
+            }
             Row {
                 Text(
                     text = "${stringResource(Res.string.genre)}: ",
@@ -102,7 +118,7 @@ fun PetCard(
 
             Row {
                 Text(
-                    text ="${stringResource(Res.string.age)}: ",
+                    text = "${stringResource(Res.string.age)}: ",
                     fontWeight = FontWeight.Medium,
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onTertiaryContainer
@@ -115,9 +131,11 @@ fun PetCard(
                 )
             }
             Text(
-                text = "${pet.price} VND",
+                text = pet.status.uppercase(),
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
@@ -131,12 +149,11 @@ private fun DogCardPreview() {
     PetAppTheme {
         PetCard(
             PetCardData(
-                id = "ID007",
                 name = "Dudu",
                 age = "1 year",
                 genre = "Male",
                 imageUrl = "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg",
-                price = "1200",
+                status = "ADOPTABLE",
                 breed = "Husky"
             ),
             onPetClick = {}

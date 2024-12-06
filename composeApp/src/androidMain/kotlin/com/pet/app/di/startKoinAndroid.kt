@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 fun startKoinAndroid(androidContext: Context) {
     startKoin {
         androidContext(androidContext)
-        modules(CommonModule)
+        modules(CommonModule, androidModules)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.pet.app.presentation.screens.petDetail
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,30 +17,25 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.pet.app.R
 import com.pet.app.presentation.commonComponents.CommonButton
 import com.pet.app.presentation.commonComponents.CommonButtonColors
 import com.pet.app.presentation.commonComponents.CommonOutlineButton
@@ -49,32 +43,44 @@ import com.pet.app.presentation.commonComponents.CommonOutlineButtonColors
 import com.pet.app.presentation.components.TableRow
 import com.pet.app.presentation.theme.PetAppTheme
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
+import org.koin.compose.koinInject
 import petapp.composeapp.generated.resources.Res
 import petapp.composeapp.generated.resources.ic_chat_dots
 import petapp.composeapp.generated.resources.place_holder_image
 
 @Composable
-fun PetDetailScreen() {
+fun PetDetailScreen(
+    petId: Int,
+    onNavigateBack: () -> Unit,
+    viewModel: PetDetailViewModel = koinInject()
+) {
+
+    LaunchedEffect(true) {
+        viewModel.getPetById(petId)
+    }
+
     PetDetailView(
-        onGoBack = {}
+        onNavigateBack = onNavigateBack,
+        uiState = viewModel.uiState
     )
 }
 
 @Composable
 private fun PetDetailView(
-    onGoBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    uiState: PetDetailScreenState
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(430.dp)
         ) {
             AsyncImage(
-                model = "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg",
+                model = uiState.pet?.photos?.firstOrNull()?.medium,
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
@@ -85,14 +91,14 @@ private fun PetDetailView(
                 modifier = Modifier.paddingFromBaseline(top = 40.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Filled.KeyboardArrowLeft,
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                     contentDescription = null,
                     modifier = Modifier
                         .size(30.dp)
                         .clickable {
-                            onGoBack()
+                            onNavigateBack()
                         },
-                    )
+                )
             }
 
         }
@@ -232,6 +238,7 @@ private fun PetDetailView(
 
     }
 
+
 }
 
 @Preview(showSystemUi = true)
@@ -239,7 +246,8 @@ private fun PetDetailView(
 private fun PetDetailViewPreview() {
     PetAppTheme {
         PetDetailView(
-            onGoBack = {}
+            onNavigateBack = {},
+            uiState = PetDetailScreenState()
         )
     }
 }

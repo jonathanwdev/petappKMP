@@ -26,8 +26,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pet.app.R
-import com.pet.app.data.remote.InitializeKtor
-import com.pet.app.domain.repository.Repository
 import com.pet.app.presentation.commonComponents.CommonButton
 import com.pet.app.presentation.commonComponents.CommonButtonColors
 import com.pet.app.presentation.commonComponents.CommonOutlineButton
@@ -35,7 +33,6 @@ import com.pet.app.presentation.commonComponents.CommonOutlineButtonColors
 import com.pet.app.presentation.components.TopAppBar
 import com.pet.app.presentation.theme.PetAppTheme
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.koinInject
 import petapp.composeapp.generated.resources.Res
 import petapp.composeapp.generated.resources.home_heading
 import petapp.composeapp.generated.resources.home_message
@@ -46,10 +43,6 @@ import petapp.composeapp.generated.resources.ic_play_circle
 fun HomeScreen(
     onNavigateToPetList: () -> Unit,
 ) {
-    val repo = koinInject<Repository>()
-    LaunchedEffect(Unit) {
-        repo.getPets()
-    }
     HomeView(
         onNavigateToPetList = onNavigateToPetList
     )

@@ -13,5 +13,7 @@ interface PetNavRouts {
     object PetList
 
     @Serializable
-    object PetDetail
+    data class PetDetail(
+        val id: Int,
+    )
 }

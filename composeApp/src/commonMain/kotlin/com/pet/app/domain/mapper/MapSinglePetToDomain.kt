@@ -9,7 +9,7 @@ import com.pet.app.domain.models.PetBreeds
 import com.pet.app.domain.models.PetContacts
 import com.pet.app.domain.models.PetPhoto
 
-class MapPetToDomain : Mapper<List<Pet>, List<AnimalResponse>> {
+class MapSinglePetToDomain: Mapper<Pet, AnimalResponse> {
     companion object {
         private const val EMPTY_DATA = "unknown"
     }
@@ -18,28 +18,26 @@ class MapPetToDomain : Mapper<List<Pet>, List<AnimalResponse>> {
         return data ?: EMPTY_DATA
     }
 
-    override fun mapToDomain(entity: List<AnimalResponse>): List<Pet> {
-        return entity.map { petItem ->
-            Pet(
-                color = petItem.colors.primary,
-                id = petItem.id,
-                name = petItem.name,
-                gender = petItem.gender,
-                photos = this.formatPhotos(petItem.photos),
-                age = petItem.age,
-                coat = petItem.coat,
-                size = petItem.size,
-                tags = petItem.tags,
-                type = petItem.type,
-                breeds = formatBreeds(petItem.breeds),
-                organizationId = petItem.organizationId,
-                status = petItem.status,
-                contact = this.formatContact(petItem.contact),
-                species = petItem.species,
-                description = this.formatData(petItem?.description),
-                publishedAt = petItem.publishedAt
+    override fun mapToDomain(entity: AnimalResponse): Pet {
+        return Pet(
+                color = entity.colors.primary,
+                id = entity.id,
+                name = entity.name,
+                gender = entity.gender,
+                photos = this.formatPhotos(entity.photos),
+                age = entity.age,
+                coat = entity.coat,
+                size = entity.size,
+                tags = entity.tags,
+                type = entity.type,
+                breeds = formatBreeds(entity.breeds),
+                organizationId = entity.organizationId,
+                status = entity.status,
+                contact = this.formatContact(entity.contact),
+                species = entity.species,
+                description = this.formatData(entity?.description),
+                publishedAt = entity.publishedAt
             )
-        }
     }
 
     private fun formatContact(contact: ContactResponse?): PetContacts {
@@ -71,5 +69,4 @@ class MapPetToDomain : Mapper<List<Pet>, List<AnimalResponse>> {
             )
         }
     }
-
 }
