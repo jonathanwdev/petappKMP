@@ -31,7 +31,10 @@ kotlin {
             implementation(libs.coil)
             implementation(libs.coil.http)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.paging.compose)
             implementation(libs.koin.android)
+            implementation(libs.paging.runtime)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -52,13 +55,14 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             api(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.paging.compose)
 
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(compose.components.resources)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.compose.navigation.desktop)
-
         }
     }
 }
@@ -92,6 +96,18 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+compose.resources {
+    generateResClass = always
+    publicResClass = true
+    customDirectory(
+        sourceSetName = "desktopMain",
+        directoryProvider = provider {
+            layout.projectDirectory.dir("desktopResources")
+
+        }
+    )
 }
 
 compose.desktop {

@@ -5,6 +5,7 @@ import com.pet.app.data.remote.dataSource.RemoteDataSource
 import com.pet.app.data.remote.dataSource.RemoteDataSourceImpl
 import com.pet.app.domain.repository.Repository
 import com.pet.app.domain.repository.RepositoryImpl
+import com.pet.app.domain.useCase.GetPetsPagingUseCase
 import org.koin.dsl.module
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf

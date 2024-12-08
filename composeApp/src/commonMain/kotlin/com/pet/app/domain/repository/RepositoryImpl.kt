@@ -11,9 +11,9 @@ class RepositoryImpl(
     private val dataSource: RemoteDataSource
 ): Repository {
 
-    override suspend fun getPets(): Result<PetList> {
+    override suspend fun getPets(page: Int): Result<PetList> {
         return runCatching {
-            val petList = dataSource.fetchAllPets();
+            val petList = dataSource.fetchAllPets(page);
             PetList(
                 pets = MapPetListToDomain().mapToDomain(petList.animals),
                 pageData = PageData(

@@ -18,6 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pet.app.Platform
+import com.pet.app.PlatformName
+import com.pet.app.getPlatform
 import com.pet.app.presentation.theme.PetAppTheme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.vectorResource
@@ -43,6 +46,8 @@ fun CommonButton(
     trailingIcon: DrawableResource? = null,
     onClick: () -> Unit
 ) {
+    val isDesktop = getPlatform().name == PlatformName.DESKTOP
+
     val finalColor = when (color) {
         CommonButtonColors.PRIMARY -> MaterialTheme.colorScheme.primary
         CommonButtonColors.SECONDARY -> MaterialTheme.colorScheme.secondary
@@ -58,7 +63,7 @@ fun CommonButton(
     Button(
         onClick = onClick,
         shape = CircleShape,
-        modifier = modifier.height(48.dp),
+        modifier = modifier.height(if(isDesktop) 38.dp else 48.dp),
         colors = ButtonDefaults.buttonColors(
             contentColor = textColor,
             containerColor = finalColor
@@ -78,7 +83,7 @@ fun CommonButton(
             }
             Text(
                 text = label,
-                fontSize = 16.sp
+                fontSize = if(isDesktop) 14.sp else 16.sp
             )
             trailingIcon?.let {
                 Spacer(Modifier.width(8.dp))

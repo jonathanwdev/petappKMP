@@ -1,6 +1,8 @@
 package com.pet.app.presentation.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TileMode
 
 val primary = Color(0xff003459)
 val secondary = Color(0xff002A48)
@@ -12,6 +14,12 @@ val onPrimaryContainer = Color(0xff00171F)
 val onSecondaryContainer = Color(0xff667479)
 val onTertiaryContainer = Color(0xFF667479)
 val background = Color(0xffFF912C)
+val onBackground = Color(0xffFCEED5)
+
+val gradient = Brush.verticalGradient(
+    listOf(primary, onBackground, onBackground),
+)
+
 
 
 
