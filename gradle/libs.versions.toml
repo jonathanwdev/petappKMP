@@ -45,7 +45,7 @@ kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 compose-navigation-desktop = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation-desktop" }
 compose-navigation-android = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-android" }
 coil = { group = "io.coil-kt.coil3", name ="coil-compose", version.ref = "coil" }
-coil-http = { group = "io.coil-kt.coil3", name ="coil-network-okhttp", version.ref = "coil" }
+coil-http = { group = "io.coil-kt.coil3", name ="coil-network-ktor3", version.ref = "coil" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -58,6 +58,7 @@ ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 paging-runtime = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntime" }
 

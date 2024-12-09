@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pet.app.presentation.commonScreens.splash.SplashScreen
 import com.pet.app.presentation.screens.home.HomeScreen
+import com.pet.app.presentation.screens.petList.PetListScreen
 
 @Composable
 fun PetNavHost() {
@@ -23,7 +24,15 @@ fun PetNavHost() {
             )
         }
         composable<PetNavRouts.Home> {
-            HomeScreen()
+            HomeScreen(
+                onNavigateToPetList = {
+                    navController.navigate(PetNavRouts.PetList)
+                },
+            )
+        }
+
+        composable<PetNavRouts.PetList> {
+            PetListScreen()
         }
     }
 }

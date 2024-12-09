@@ -6,6 +6,7 @@
     <string name="age">Age</string>
     <string name="name">Name</string>
     <string name="ops">Oops...</string>
+    <string name="adoptable">ADOPTABLE</string>
     <string name="retryAsk">Try again ??</string>
     <string name="error_loading_pets">An error occurred, please tap reload.</string>
     <string name="home_text">Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</string>

@@ -9,4 +9,8 @@ interface PetNavRouts {
 
     @Serializable
     object Home
+
+    @Serializable
+    object PetList
+
 }

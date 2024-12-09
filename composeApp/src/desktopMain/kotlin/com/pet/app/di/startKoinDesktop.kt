@@ -5,7 +5,7 @@ import org.koin.core.context.startKoin
 
 fun startKoinDesktop() {
     startKoin {
-        modules(CommonModule)
+        modules(CommonModule, desktopModules)
     }
 
 }

@@ -17,10 +17,8 @@ import petapp.composeapp.generated.resources.logo
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TextButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -30,10 +28,10 @@ import com.pet.app.presentation.theme.PetAppTheme
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
-    currRoute: String,
 ) {
+
     Row(
-        modifier = Modifier.fillMaxWidth().height(60.dp),
+        modifier = modifier.fillMaxWidth().height(60.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -54,17 +52,15 @@ fun TopBar(
                     fontSize = 14.sp,
                     textDecoration = TextDecoration.Underline,
                     modifier = Modifier.clickable {
-
                     }
                 )
 
                 Text(
-                    "Category",
+                    "Pet List",
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
                     modifier = Modifier.clickable {
-
                     }
 
                 )
@@ -106,8 +102,6 @@ fun TopBar(
 @Composable
 fun TopBarPreview() {
     PetAppTheme {
-        TopBar(
-            currRoute = "Home"
-        )
+        TopBar()
     }
 }

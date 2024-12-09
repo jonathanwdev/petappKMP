@@ -28,10 +28,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.compose.navigation.android)
-            implementation(libs.coil)
-            implementation(libs.coil.http)
             implementation(libs.kotlinx.coroutines.android)
-            implementation(libs.paging.compose)
             implementation(libs.koin.android)
             implementation(libs.paging.runtime)
 
@@ -43,6 +40,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.coil)
+            implementation(libs.coil.http)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.serialization.json)
@@ -60,7 +59,6 @@ kotlin {
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(compose.components.resources)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.compose.navigation.desktop)
         }
@@ -99,12 +97,10 @@ dependencies {
 }
 
 compose.resources {
-    generateResClass = always
-    publicResClass = true
     customDirectory(
         sourceSetName = "desktopMain",
         directoryProvider = provider {
-            layout.projectDirectory.dir("desktopResources")
+            layout.projectDirectory.dir("desktopResources/drawable")
 
         }
     )
