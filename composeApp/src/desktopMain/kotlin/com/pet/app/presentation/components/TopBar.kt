@@ -23,12 +23,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
-import com.pet.app.presentation.theme.PetAppTheme
+import androidx.navigation.NavDestination
+import androidx.navigation.NavHostController
+import com.pet.app.presentation.navigation.PetNavRouts
 
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
+    navHostController: NavHostController
 ) {
+    val currentScreen = navHostController.currentDestination
+
 
     Row(
         modifier = modifier.fillMaxWidth().height(60.dp),
@@ -38,7 +43,10 @@ fun TopBar(
         Row {
             Image(
                 bitmap = imageResource(Res.drawable.logo),
-                contentDescription = null
+                contentDescription = null,
+                modifier = Modifier.clickable {
+                    navHostController.navigate(PetNavRouts.Home)
+                }
             )
             Spacer(modifier = Modifier.width(48.dp))
             Row(
@@ -50,8 +58,9 @@ fun TopBar(
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
-                    textDecoration = TextDecoration.Underline,
+                    textDecoration = if(currentScreen?.route == PetNavRouts.Home.toString()) TextDecoration.Underline else null ,
                     modifier = Modifier.clickable {
+                        navHostController.navigate(PetNavRouts.Home)
                     }
                 )
 
@@ -59,8 +68,10 @@ fun TopBar(
                     "Pet List",
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
+                    textDecoration = if(currentScreen?.route == PetNavRouts.PetList.toString()) TextDecoration.Underline else null ,
                     fontSize = 14.sp,
                     modifier = Modifier.clickable {
+                        navHostController.navigate(PetNavRouts.PetList)
                     }
 
                 )
@@ -85,7 +96,10 @@ fun TopBar(
             }
         }
         Row {
-            CommonButton(color = CommonButtonColors.QUATERNARY, label = "Login", onClick = {})
+            CommonButton(
+                color = CommonButtonColors.QUATERNARY,
+                label = "Login", onClick = {}
+            )
             Spacer(modifier = Modifier.width(10.dp))
             CommonButton(
                 color = CommonButtonColors.PRIMARY,
@@ -98,10 +112,3 @@ fun TopBar(
 
 }
 
-@Preview
-@Composable
-fun TopBarPreview() {
-    PetAppTheme {
-        TopBar()
-    }
-}

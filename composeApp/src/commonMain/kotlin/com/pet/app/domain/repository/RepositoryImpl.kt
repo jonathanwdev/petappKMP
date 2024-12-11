@@ -6,10 +6,12 @@ import com.pet.app.domain.mapper.MapSinglePetToDomain
 import com.pet.app.domain.models.PageData
 import com.pet.app.domain.models.Pet
 import com.pet.app.domain.models.PetList
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class RepositoryImpl(
     private val dataSource: RemoteDataSource
-): Repository {
+) : Repository {
 
     override suspend fun getPets(page: Int): Result<PetList> {
         return runCatching {
@@ -27,7 +29,7 @@ class RepositoryImpl(
         }
     }
 
-    override suspend fun getPetById(id: Int):  Result<Pet> {
+    override suspend fun getPetById(id: Int): Result<Pet> {
         return runCatching {
             val pet = dataSource.fetchPetById(id)
             MapSinglePetToDomain().mapToDomain(pet.animal)

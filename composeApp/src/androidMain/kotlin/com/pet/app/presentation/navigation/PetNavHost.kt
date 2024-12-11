@@ -44,7 +44,6 @@ fun PetNavHost() {
                 }
             )
         }
-
         composable<PetNavRouts.PetDetail> { backStackEntry ->
             val petId = backStackEntry.toRoute<PetNavRouts.PetDetail>()
             PetDetailScreen(

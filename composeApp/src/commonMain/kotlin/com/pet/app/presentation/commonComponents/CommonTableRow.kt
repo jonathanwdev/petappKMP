@@ -1,6 +1,5 @@
-package com.pet.app.presentation.components
+package com.pet.app.presentation.commonComponents
 
-import android.widget.TableRow
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +14,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TableRow(modifier: Modifier = Modifier, title: String, value: String) {
+fun CommonTableRow(
+    modifier: Modifier = Modifier,
+    title: String,
+    value: String
+) {
     Column(
         modifier = modifier.fillMaxWidth()
     ) {

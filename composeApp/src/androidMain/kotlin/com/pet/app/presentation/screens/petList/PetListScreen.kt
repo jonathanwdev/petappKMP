@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -42,6 +43,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.pet.app.domain.models.Pet
 import com.pet.app.dummyData.mockPet
 import com.pet.app.presentation.commonComponents.CommonLoader
+import com.pet.app.presentation.commonComponents.CommonRefreshButton
 import com.pet.app.presentation.components.PetCard
 import com.pet.app.presentation.components.PetCardData
 import com.pet.app.presentation.theme.PetAppTheme
@@ -133,61 +135,51 @@ private fun PetListView(
 
                 }
             }
-        }
-        lazyPagingItems.apply {
-            when {
-                loadState.refresh is LoadState.Loading -> {
-                    Spacer(Modifier.height(5.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.padding(10.dp)
-                        )
-                    }
+            item(
+                span = {
+                    GridItemSpan(2)
                 }
-
-                loadState.append is LoadState.Loading -> {
-                    Spacer(Modifier.height(5.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.padding(10.dp)
-                        )
-                    }
-                }
-
-                loadState.append is LoadState.Error -> {
-                    Spacer(Modifier.height(25.dp))
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        IconButton(
-                            onClick = {
-                                lazyPagingItems.refresh()
-                            },
-                            modifier = Modifier
-                                .clip(CircleShape)
-                                .background(MaterialTheme.colorScheme.secondary)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Refresh,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.surface,
-                                modifier = Modifier
-                                    .padding(3.dp)
-                                    .size(30.dp)
-                            )
+            ) {
+                lazyPagingItems.apply {
+                    when {
+                        loadState.refresh is LoadState.Loading -> {
+                            Spacer(Modifier.height(5.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
-                        Text(text = stringResource(Res.string.error_loading_pets))
+
+                        loadState.append is LoadState.Loading -> {
+                            Spacer(Modifier.height(5.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+
+                        loadState.append is LoadState.Error -> {
+                            Spacer(Modifier.height(25.dp))
+                            CommonRefreshButton(
+                                modifier = Modifier.fillMaxWidth(),
+                                onClick = {
+                                    lazyPagingItems.retry()
+                                }
+                            )
+                            Spacer(Modifier.height(25.dp))
+                        }
                     }
-                    Spacer(Modifier.height(25.dp))
                 }
             }
         }
     }
+
 }

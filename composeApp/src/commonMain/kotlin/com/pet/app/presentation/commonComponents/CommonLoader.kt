@@ -19,6 +19,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.pet.app.PlatformName
+import com.pet.app.getPlatform
 import com.pet.app.presentation.theme.gradient
 import org.jetbrains.compose.resources.painterResource
 import petapp.composeapp.generated.resources.Res
@@ -27,6 +29,8 @@ import petapp.composeapp.generated.resources.logo
 
 @Composable
 fun CommonLoader(modifier: Modifier = Modifier) {
+    val isAndroid = getPlatform().name == PlatformName.ANDROID;
+
     val infiniteTransition = rememberInfiniteTransition(label = "animate_loader_event")
     val position by infiniteTransition.animateFloat(
         label = "animate_loader",
@@ -51,7 +55,7 @@ fun CommonLoader(modifier: Modifier = Modifier) {
             ),
             modifier = Modifier
                 .width(120.dp)
-                .offset(x = (position * 300).dp),
+                .offset(x = (position * if(isAndroid) 300 else 1000).dp),
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
