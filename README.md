@@ -1,9 +1,8 @@
-# PetAppKMP, A Kotlin Multiplatform Project - Android e Desktop
-### This project was created using Petfinder Apit - https://www.petfinder.com/developers/v2/docs/
-
+# PetAppKMP
+> A Kotlin Multiplatform Project - Android and Desktop
 
 ## Why KMP ?
-### Because with kmp you can share all of the core with multiple projects and interfaces easily. If you have a POS app, you can use the same core create your sales point in a customer selfcheckout, android and desktop with any interface.
+> Because with kmp you can share all of the core with multiple projects and interfaces easily. If you have a POS app, you can use the same core create your sales point in a customer selfcheckout, android and desktop with any interface.
 ![Project Architecture](screenshot/kmp_arch.png)
 
 ## Project Arch
@@ -19,13 +18,20 @@
 </code>
 
 ## Screen shots
+
+### Desktop
 ![SplashDesktop](screenshot/desktop_splash.gif)
+![ListDesktop](screenshot/desktop_petlist.gif)
+![DetailDesktop](screenshot/desktop_detail.gif)
+<br>
+### Mobile
 ![SplashMobile](screenshot/mobile_splash.gif)
-![Home](screenshot/home.png)<br>
-![PetList](screenshot/petlist.png)<br>
-![PetDetails](screenshot/petdetail.png)<br>
+![SplashMobile](screenshot/mobile_petlist.gif)
+![SplashMobile](screenshot/mobile_detail.gif)
+<br>
 
-
+### This project was created using Petfinder Api - https://www.petfinder.com/developers/v2/docs/
+### Figma template: https://www.figma.com/community/file/1164046882633361201/free-template-ecommerce-website-monito-pets-for-best-community
 
 This is a Kotlin Multiplatform project targeting Android,  Desktop.
 
