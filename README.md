@@ -19,6 +19,8 @@
 </code>
 
 ## Screen shots
+![SplashDesktop](screenshot/desktop_splash.gif)
+![SplashMobile](screenshot/mobile_splash.gif)
 ![Home](screenshot/home.png)<br>
 ![PetList](screenshot/petlist.png)<br>
 ![PetDetails](screenshot/petdetail.png)<br>
