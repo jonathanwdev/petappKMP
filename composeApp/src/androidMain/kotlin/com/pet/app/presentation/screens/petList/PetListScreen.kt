@@ -135,6 +135,23 @@ private fun PetListView(
 
                 }
             }
+            if(lazyPagingItems.loadState.hasError) {
+                item(
+                    span = {
+                        GridItemSpan(2)
+                    }
+                ) {
+                    Spacer(Modifier.height(25.dp))
+                    CommonRefreshButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            lazyPagingItems.retry()
+                        }
+                    )
+                    Spacer(Modifier.height(25.dp))
+                }
+            }
+
             item(
                 span = {
                     GridItemSpan(2)
@@ -166,16 +183,6 @@ private fun PetListView(
                             }
                         }
 
-                        loadState.append is LoadState.Error -> {
-                            Spacer(Modifier.height(25.dp))
-                            CommonRefreshButton(
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    lazyPagingItems.retry()
-                                }
-                            )
-                            Spacer(Modifier.height(25.dp))
-                        }
                     }
                 }
             }
