@@ -1,8 +1,8 @@
 # PetAppKMP
 > A Kotlin Multiplatform Project - Android and Desktop
 
-
-
+## Preview Video
+[![PET APP VIDEO](screenshot/preview.png)](https://www.youtube.com/watch?v=mX7R_xBhAfc)
 
 ## Features
 - Fetch pets from [PetFinder API](https://www.petfinder.com/developers/v2/docs/#get-animals)
@@ -27,17 +27,6 @@
 > Because with kmp you can share all of the core with multiple projects and interfaces easily. If you have a POS app, you can use the same core create your sales point in a customer selfcheckout, android and desktop with any interface.
 ![Project Architecture](screenshot/kmp_arch.png)
 
-## Project Arch
-1. **common**: All the shared code between platforms - Domain, Data, DI, Resources and SharedPresentation
-2. **androidApp**: All android interfaces, composables and di
-3. **desktopApp**: All desktop interfaces, composables and di
-
-<code> FOLDERS
-  ├── androidApp/**
-  ├── desktopApp/**
-  ├── common/**
-  └── build.gradle  
-</code>
 
 ## Screen shots
 
@@ -52,18 +41,22 @@
 ![SplashMobile](screenshot/mobile_detail.gif)
 <br>
 
+## Project Arch
+1. **common**: All the shared code between platforms - Domain, Data, DI, Resources and SharedPresentation
+2. **androidApp**: All android interfaces, composables and di
+3. **desktopApp**: All desktop interfaces, composables and di
+
+<code> FOLDERS
+  ├── androidApp/**
+  ├── desktopApp/**
+  ├── common/**
+  └── build.gradle  
+</code>
+
 
 - This project was created using Petfinder Api - [PetFinder API](https://www.petfinder.com/developers/v2/docs/#get-animals)
 - Figma template - [FIGMA TEMPLATE](https://www.figma.com/community/file/1164046882633361201/free-template-ecommerce-website-monito-pets-for-best-community)
 
-
-This is a Kotlin Multiplatform project targeting Android,  Desktop.
-
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets. 
-  - `androidMain` would be the right folder for android app.
-  - `desktopMain` would be the right folder for desktop app.
 
 **Developed by Jonathan Souza**
 
