@@ -2,7 +2,7 @@
 > A Kotlin Multiplatform Project - Android and Desktop
 
 ## Preview Video
-[![PET APP VIDEO](screenshot/preview.png)](https://www.youtube.com/watch?v=mX7R_xBhAfc)
+[![PET APP VIDEO](screenshot/preview.gif)](https://www.youtube.com/watch?v=mX7R_xBhAfc)
 
 ## Features
 - Fetch pets from [PetFinder API](https://www.petfinder.com/developers/v2/docs/#get-animals)
