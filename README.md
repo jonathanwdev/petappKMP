@@ -1,7 +1,9 @@
 # PetAppKMP
 > A Kotlin Multiplatform Project - Android and Desktop
 
-[![Pet App Demo](screenshot/pet_app.mp4)](screenshot/pet_app.mp4)
+
+
+
 ## Features
 - Fetch pets from [PetFinder API](https://www.petfinder.com/developers/v2/docs/#get-animals)
 - Display display all pets with infinity scroll in desktop and android
